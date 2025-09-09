@@ -13,6 +13,7 @@ function Card({updateBoard,index}) {
     const fetchResults = async () => {
       try {
         const random =Math.floor( Math.random() *  700+1)
+        console.log("fetching", random)
         fetch("https://pokeapi.co/api/v2/pokemon/"+random)
         .then(res => res.json())
         .then(data => ignore && setPokemon(data) )
