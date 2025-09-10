@@ -25,7 +25,7 @@ export default function App (){
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const promises= Array.from({length:8}, async ()=>{
+        const promises= Array.from({length:16}, async ()=>{
         const random =Math.floor( Math.random() *  700+1)
        const res= await fetch("https://pokeapi.co/api/v2/pokemon/"+random)
        return res.json();

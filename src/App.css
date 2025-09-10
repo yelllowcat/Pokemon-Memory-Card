@@ -96,12 +96,21 @@ justify-items: center;
     font-size: 1em;
   }
   .score{
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bolder;
+
+}.Board{
+    justify-self: center;
+    width: 100%;
+    display: grid;
+ grid-template-columns:repeat(4, minmax(0, 1fr));  
+   padding: 20px;
+    gap: 40px;
+justify-items: center;
 }
 
 .card{
-    width: 38dvw;
+    width: 21dvw;
     height: auto;
 }
 }
