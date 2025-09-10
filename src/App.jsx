@@ -14,7 +14,11 @@ function Card({updateBoard,index,pokemon}) {
      
   );
 }
-
+const dificults= {
+  easy:8,
+  medium:16,
+  hard:24
+}
 
 export default function App (){
   const [board, setBoard]= useState([]);
@@ -22,10 +26,12 @@ export default function App (){
   const [counter, setCounter] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [newGame, setNewGame] = useState(false);
+    const [winner, setWinner] = useState(null)
+
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const promises= Array.from({length:16}, async ()=>{
+        const promises= Array.from({length:dificults.hard}, async ()=>{
         const random =Math.floor( Math.random() *  700+1)
        const res= await fetch("https://pokeapi.co/api/v2/pokemon/"+random)
        return res.json();
@@ -43,6 +49,7 @@ export default function App (){
     setCounter(0)
     setFound([])
     setBoard([])
+    setWinner(null)
     setNewGame(!newGame)
   }
 
@@ -58,8 +65,11 @@ export default function App (){
       setFound(newFound);
     shuffleArray(newBoard);
         setBoard(newBoard);
-       
+        
   }
+   if (counter == board.length) {
+          console.log("you win")
+        }
   if (counter>highScore) {
         setHighScore(counter)
        }
