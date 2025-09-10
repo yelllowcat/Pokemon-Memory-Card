@@ -20,18 +20,19 @@ const dificults= {
   hard:24
 }
 
+
 export default function App (){
   const [board, setBoard]= useState([]);
   const [found,setFound] = useState([])
   const [counter, setCounter] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [newGame, setNewGame] = useState(false);
-    const [winner, setWinner] = useState(null)
+    const [winner, setWinner] = useState(false)
 
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const promises= Array.from({length:dificults.hard}, async ()=>{
+        const promises= Array.from({length:dificults.easy}, async ()=>{
         const random =Math.floor( Math.random() *  700+1)
        const res= await fetch("https://pokeapi.co/api/v2/pokemon/"+random)
        return res.json();
@@ -49,7 +50,7 @@ export default function App (){
     setCounter(0)
     setFound([])
     setBoard([])
-    setWinner(null)
+    setWinner(false)
     setNewGame(!newGame)
   }
 
@@ -67,20 +68,33 @@ export default function App (){
         setBoard(newBoard);
         
   }
-   if (counter == board.length) {
-          console.log("you win")
+   if (counter == board.length && board.length>1 && winner==false) {
+    console.log("jdjasda")
+    setWinner(true)
         }
   if (counter>highScore) {
         setHighScore(counter)
+
        }
 
    
     return (
       <>
       <h1>Pokemon Memory Game</h1>
+      <header>
       <h2>Get points by clicking on a pokemon but don't click on any more than once!</h2>
+        <div className="difficultChooser">
+  <label htmlFor="options">Choose a difficult: </label>
+  <select id="options" defaultValue={"medium"} onClick={console.log("jdjj")} name="options" >
+    <option value="easy" >Easy</option>
+    <option value="medium" >Medium</option>
+    <option value="hard">Hard</option>
+  </select>
+  </div>
+
+            </header>
     <div className="Board">
-     {board.map((pokemon,index) =>{
+     {winner? <h1>you win</h1> :board.map((pokemon,index) =>{
         return(
           <Card key={index} pokemon={pokemon} index={index} updateBoard={updateBoard} ></Card>
         )
