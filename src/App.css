@@ -1,12 +1,29 @@
 
-html, body {
-  height: 100%;
-  margin: 0;          
+*, *::before, *::after {
+  box-sizing: border-box;
 }
-*{
-    box-sizing: border-box;
+* {
+  margin: 0;
 }
 
+#root{
+    width: 100%;
+}
+h1{
+    font-size: 6em;
+    align-self: flex-start;
+    margin: 2vh;
+}
+h2{ 
+    font-size: 2em;
+    margin-left: 2vw;
+}
+.pokemon{
+    align-self: center;
+object-fit: cover;
+    width:70%;
+
+}
 body{
     width: 100%;
     background-image: url(assets/5283517.jpg);
@@ -16,22 +33,21 @@ body{
       align-items: center;
 
 }
-#root{
-    min-height: 100dvh; 
-    width: 100%;
-}
+
 .Board{
-    width: 100%;
+    justify-self: center;
+    width: 90%;
     display: grid;
- grid-template-columns: repeat(4, minmax(0, 1fr));  
+ grid-template-columns:repeat(4, minmax(0, 1fr));  
    padding: 20px;
-    gap: 20px;
+    gap: 40px;
+
 }
 .card{
+    height: 15vw;
     border: 1px black solid ;
     display: flex;
-    height: 20vh;
-    overflow-wrap: anywhere;
+    flex-direction: column;
 }
 .scores{
     display: flex;
@@ -39,20 +55,53 @@ body{
     gap: 10vw;
 }
 .score{
-    font-size: 5em;
+    font-size: 3em;
     font-weight: bolder;
 }
-h1{
-    font-size: 10em;
-    align-self: flex-start;
-    margin: 2vh;
-}
-h2{ 
-    font-size: 3em;
-    margin-left: 2vw;
-}
-@media (max-width: 2000px) {
-  h2 {
+
+
+@media (max-width: 1100px) {
+  h1 {
+    font-size: 5em;
+    
+  }
+   h2 {
     font-size: 2em;
   }
+
+    .score{
+    font-size: 3em;
+    font-weight: bolder;
+}
+.Board{
+    justify-self: center;
+    width: 90%;
+    display: grid;
+ grid-template-columns:repeat(2, minmax(0, 1fr));  
+   padding: 20px;
+    gap: 40px;
+justify-items: center;
+}
+  .card{
+    width: 25vw;
+    height: auto;
+}
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 3em;
+  }
+    h2 {
+    font-size: 1em;
+  }
+  .score{
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.card{
+    width: 38dvw;
+    height: auto;
+}
 }

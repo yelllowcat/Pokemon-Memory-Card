@@ -9,7 +9,7 @@ function Card({updateBoard,index,pokemon}) {
   return (
     <div className="card" onClick={handleClick}>
        <h2>{pokemon?.name || "Loading..."}</h2>
-      {pokemon?.sprites ? <img src={pokemon.sprites.front_default} alt="Random Gif" /> : <p>Loading...</p>}
+      {pokemon?.sprites ? <img className="pokemon" src={pokemon.sprites.front_default} alt="Random Gif" /> : <p>Loading...</p>}
           </div>
      
   );
