@@ -99,11 +99,12 @@ export default function App (){
             </header>
     <div className="Board"  style={{gridTemplateColumns: difficult=="easy" ? "repeat(4, minmax(0, 1fr))" : "repeat(6, minmax(0, 1fr))" }} >
       {console.log(difficult=="easy" ? "repeat(4, minmax(0, 1+fr))" : "repeat(6, minmax(0, 1fr))")}
-     {winner? <h1>you win</h1> :board.map((pokemon,index) =>{
+     {board.map((pokemon,index) =>{
         return(
           <Card key={index} pokemon={pokemon} grid index={index}  updateBoard={updateBoard} ></Card>
         )
       })} 
+      {winner && <h3 className="winMessage">Congratulations! You did it!</h3>}
     </div>
      <div className="scores">
       <p className="score">Current Score: {counter} </p>

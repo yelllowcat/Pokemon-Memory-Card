@@ -39,6 +39,8 @@ body{
 }
 
 .Board{
+    position: relative;
+
     justify-self: center;
     width: 90%;
     display: grid;
@@ -68,6 +70,13 @@ body{
     font-size: 1.2em;
     margin-right: 7vw;
   }
+  .winMessage{
+    font-size: 4em;
+      position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 @media (max-width: 1100px) {
   h1 {
