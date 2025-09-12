@@ -104,7 +104,7 @@ export default function App (){
           <Card key={index} pokemon={pokemon} grid index={index}  updateBoard={updateBoard} ></Card>
         )
       })} 
-      {winner && <h3 className="winMessage">Congratulations! You did it!</h3>}
+      
     </div>
      <div className="scores">
       <p className="score">Current Score: {counter} </p>
