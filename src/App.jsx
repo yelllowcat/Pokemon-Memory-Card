@@ -14,7 +14,7 @@ function Card({updateBoard,index,pokemon}) {
      
   );
 }
-const dificults= {
+const difficults= {
   easy:8,
   medium:16,
   hard:24
@@ -28,11 +28,14 @@ export default function App (){
   const [highScore, setHighScore] = useState(0);
   const [newGame, setNewGame] = useState(false);
     const [winner, setWinner] = useState(false)
+  const [difficult, setDifficult] = useState("easy");
 
+  
   useEffect(() => {
+    const lenght= difficults[difficult] ? difficults[difficult] :difficults.easy;
     const fetchResults = async () => {
       try {
-        const promises= Array.from({length:dificults.easy}, async ()=>{
+        const promises= Array.from({length:lenght}, async ()=>{
         const random =Math.floor( Math.random() *  700+1)
        const res= await fetch("https://pokeapi.co/api/v2/pokemon/"+random)
        return res.json();
@@ -44,7 +47,7 @@ export default function App (){
       } 
     };
     fetchResults();
-  }, [newGame]);
+  }, [newGame,difficult]);
 
   const restart =() =>{
     setCounter(0)
@@ -54,6 +57,9 @@ export default function App (){
     setNewGame(!newGame)
   }
 
+  const handleDifficult =(value)=>{
+   setDifficult(value.target.value)
+  }
   const updateBoard = (index) =>{
     const newBoard = [...board];
         const newFound = found;
@@ -69,7 +75,6 @@ export default function App (){
         
   }
    if (counter == board.length && board.length>1 && winner==false) {
-    console.log("jdjasda")
     setWinner(true)
         }
   if (counter>highScore) {
@@ -77,7 +82,6 @@ export default function App (){
 
        }
 
-   
     return (
       <>
       <h1>Pokemon Memory Game</h1>
@@ -85,7 +89,7 @@ export default function App (){
       <h2>Get points by clicking on a pokemon but don't click on any more than once!</h2>
         <div className="difficultChooser">
   <label htmlFor="options">Choose a difficult: </label>
-  <select id="options" defaultValue={"medium"} onClick={console.log("jdjj")} name="options" >
+  <select id="options" defaultValue={"easy"} onChange={handleDifficult} name="options" >
     <option value="easy" >Easy</option>
     <option value="medium" >Medium</option>
     <option value="hard">Hard</option>
@@ -93,10 +97,11 @@ export default function App (){
   </div>
 
             </header>
-    <div className="Board">
+    <div className="Board"  style={{gridTemplateColumns: difficult=="easy" ? "repeat(4, minmax(0, 1fr))" : "repeat(6, minmax(0, 1fr))" }} >
+      {console.log(difficult=="easy" ? "repeat(4, minmax(0, 1+fr))" : "repeat(6, minmax(0, 1fr))")}
      {winner? <h1>you win</h1> :board.map((pokemon,index) =>{
         return(
-          <Card key={index} pokemon={pokemon} index={index} updateBoard={updateBoard} ></Card>
+          <Card key={index} pokemon={pokemon} grid index={index}  updateBoard={updateBoard} ></Card>
         )
       })} 
     </div>
